@@ -1,6 +1,6 @@
 module ProxyApp
   class ListServersAction < GenericAction
-    def perform(_)
+    def perform
       servers = Server.all
       servers.each do |server|
         ip_count = server.proxy_ips.count

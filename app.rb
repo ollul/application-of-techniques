@@ -17,12 +17,9 @@ module ProxyApp
 end
 
 require_relative './helpers/string_helper'
-require_relative './models/model'
-require_relative './models/proxy_ip'
-require_relative './models/server'
-require_relative './models/proxy_package'
-require_relative './models/proxy_ip_proxy_package'
-require_relative './models/user'
+Dir[File.join(__dir__, 'models/*.rb')].each do |file|
+  require_relative file
+end
 Dir[File.join(__dir__, 'validators/*')].each do |file|
   require_relative file
 end

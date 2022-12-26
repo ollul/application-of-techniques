@@ -23,7 +23,7 @@ module ProxyApp
       @console.run do |line|
         parts = line.split(/\s+/)
         res = check_validity(line)
-        exit if parts[0] == exit
+        exit if parts[0] == 'exit'
         if COMMANDS.keys.include?(parts[0]) && res[0]
           args = parts[1..].map(&:to_i)
           COMMANDS[parts[0]][0].new.perform(*args)
@@ -38,7 +38,7 @@ module ProxyApp
     def check_validity(params)
       parts = params.split(/\s+/)
       cmd = COMMANDS[parts[0]]
-      return "Unknown command #{parts[0]}, please try again" unless cmd
+      return [false, "Unknown command #{parts[0]}, please try again"] unless cmd
 
       cmd[1].validate(parts[1..])
     end
