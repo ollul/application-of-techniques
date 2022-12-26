@@ -1,0 +1,5 @@
+[
+  {"id": 1, "name": "UKServer", "main_ip": "64.78.93.22"},
+  {"id": 2, "name": "GermanyServer", "main_ip": "13.144.17.18"},
+  {"id": 3, "name": "USServer", "main_ip": "166.64.87.34"}
+]
