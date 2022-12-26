@@ -23,6 +23,14 @@ require_relative './models/server'
 require_relative './models/proxy_package'
 require_relative './models/proxy_ip_proxy_package'
 require_relative './models/user'
+Dir[File.join(__dir__, 'validators/*')].each do |file|
+  require_relative file
+end
+Dir[File.join(__dir__, 'actions/*')].each do |file|
+  next if file.include?('processor') || file.include?('console')
+
+  require_relative file
+end
 require_relative './actions/console'
 require_relative './actions/processor'
 
