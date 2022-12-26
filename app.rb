@@ -14,11 +14,12 @@ module ProxyApp
     processor = ProxyApp::Processor.new(console)
     processor.process
   end
-  # puts ProxyIp.where(country: 'United States')
 end
 
-require_relative './models/server'
+require_relative './helpers/string_helper'
+require_relative './models/model'
 require_relative './models/proxy_ip'
+require_relative './models/server'
 require_relative './models/proxy_package'
 require_relative './models/proxy_ip_proxy_package'
 require_relative './models/user'
