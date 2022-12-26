@@ -5,7 +5,7 @@ module ProxyApp
       total_cnt = 0
       ips.each do |ip|
         cnt = ip.proxy_packages.count
-        next if cnt > 0
+        next if cnt.postive?
 
         total_cnt += 1
         puts "#{ip.ip}:#{ip.port}"

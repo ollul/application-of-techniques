@@ -4,7 +4,7 @@ module ProxyApp
       ips = ProxyIp.all
       ips.sort_by { |ip| -ip.proxy_packages.count }.each do |ip|
         cnt = ip.proxy_packages.count
-        next if cnt == 0
+        next if cnt.zero?
 
         puts "#{ip.ip}:#{ip.port} - #{cnt} users"
       end
