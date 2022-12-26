@@ -11,7 +11,7 @@ module ProxyApp
       'list_server_ips' => [ListServerIps, ProxyApp::ServerIDValidator],
       'show_ip_usage' => [ShowIpUsageAction, ProxyApp::NullValidator],
       'show_unused_ips' => [ShowUnusedIpsAction, ProxyApp::NullValidator],
-      'show_income' => [ShowIncomeAction, ProxyApp::NullValidator],
+      'show_income' => [ShowIncomeAction, ProxyApp::NullValidator]
     }.freeze
 
     def initialize(console)
@@ -23,6 +23,7 @@ module ProxyApp
       @console.run do |line|
         parts = line.split(/\s+/)
         res = check_validity(line)
+        exit if parts[0] == exit
         if COMMANDS.keys.include?(parts[0]) && res[0]
           args = parts[1..].map(&:to_i)
           COMMANDS[parts[0]][0].new.perform(*args)
