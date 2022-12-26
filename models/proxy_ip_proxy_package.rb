@@ -11,28 +11,18 @@ module ProxyApp
       @proxy_ip_to_proxy_packages = Hash.new { |h, k| h[k] = [] }
       @proxy_package_to_proxy_ips = Hash.new { |h, k| h[k] = [] }
 
-      for item in data
+      data.each do |item|
         @proxy_ip_to_proxy_packages[item['proxy_ip_id']] << item['proxy_package_id']
         @proxy_package_to_proxy_ips[item['proxy_package_id']] << item['proxy_ip_id']
       end
     end
 
     def self.get_proxy_ip_for_proxy_package_id(id)
-      result = []
-      for pid in @proxy_package_to_proxy_ips[id]
-        result << ProxyIp.find(pid)
-      end
-
-      result
+      @proxy_package_to_proxy_ips[id].map { |pid| ProxyIp.find(pid) }
     end
 
     def self.get_proxy_package_for_proxy_ip_id(id)
-      result = []
-      for pid in @proxy_ip_to_proxy_packages[id]
-        result << ProxyPackage.find(pid)
-      end
-
-      result
+      @proxy_ip_to_proxy_packages[id].map { |pid| ProxyPackage.find(pid) }
     end
   end
 end
